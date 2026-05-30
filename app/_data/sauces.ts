@@ -1,0 +1,68 @@
+import type { Sauce } from "../_lib/types";
+
+export const sauces: Sauce[] = [
+  {
+    id: "house",
+    name: "House",
+    tagline: "La signature.",
+    story: "Mayo-ketchup, oignon doux, secret du chef. Celle qu'on met partout, parce qu'on la rate jamais.",
+    color: "#e8845a",
+    spice: 0,
+  },
+  {
+    id: "bbq-noir",
+    name: "BBQ Noir",
+    tagline: "Fumée. Mélasse. Charbon.",
+    story: "On la fait mijoter 4h. On la passe au charbon de hêtre. On la met dans un pot. Tu la mets sur ton burger.",
+    color: "#2b1810",
+    spice: 1,
+  },
+  {
+    id: "burger-classique",
+    name: "Burger Classique",
+    tagline: "Celle de papa.",
+    story: "Cornichons hachés, oignon, mayo, ketchup. Celle qu'on imite quand on commande un Big Mac mais en mieux.",
+    color: "#f2b134",
+    spice: 0,
+  },
+  {
+    id: "buffalo",
+    name: "Buffalo Brûlée",
+    tagline: "L'Amérique qui pique.",
+    story: "Beurre fondu, vinaigre, cayenne. Direct de Buffalo, NY. On t'avertit : ça pique au troisième mordu.",
+    color: "#d62828",
+    spice: 3,
+  },
+  {
+    id: "cheddar-fondu",
+    name: "Cheddar Fondu",
+    tagline: "Le fromage qui dégueule.",
+    story: "Cheddar affiné, lait entier, beurre. Servie chaude. Si elle est froide, elle est ratée.",
+    color: "#f2a73d",
+    spice: 0,
+  },
+  {
+    id: "honey-mustard",
+    name: "Honey Mustard",
+    tagline: "Doux mais pas dupe.",
+    story: "Miel d'acacia, moutarde de Dijon, un peu de pomme. Pour ceux qui font semblant de pas aimer la moutarde.",
+    color: "#e6a23c",
+    spice: 1,
+  },
+  {
+    id: "spicy-mayo",
+    name: "Spicy Mayo",
+    tagline: "Mayo, mais réveillée.",
+    story: "Mayo maison, sriracha, ail noir. Idéale dans le burger Spicy One. Aussi bien sur les frites.",
+    color: "#ff6b6b",
+    spice: 2,
+  },
+  {
+    id: "black-garlic",
+    name: "Black Garlic",
+    tagline: "Umami noir.",
+    story: "Ail fermenté 6 semaines, sauce soja, miso. La plus chère à faire. La plus chère à offrir.",
+    color: "#1a1a1a",
+    spice: 0,
+  },
+];
