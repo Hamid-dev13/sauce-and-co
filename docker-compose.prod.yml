@@ -1,0 +1,42 @@
+# Déploiement PROD de la démo Sauce & Co derrière le Traefik existant (coolify-proxy).
+# Aucun port hôte : Traefik route via les labels + le réseau partagé.
+# 1. Crée un fichier .env (voir variables ci-dessous) à côté de ce fichier :
+#      SAUCE_DOMAIN=demo.tondomaine.fr
+#      TRAEFIK_NETWORK=coolify
+#      TRAEFIK_ENTRYPOINT=https
+#      TRAEFIK_CERTRESOLVER=letsencrypt
+# 2. docker compose -f docker-compose.prod.yml up -d --build
+services:
+  sauce-and-co:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sauce-and-co:prod
+    container_name: sauce-and-co
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+    expose:
+      - "3000"
+    networks:
+      - proxy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${TRAEFIK_NETWORK}"
+      - "traefik.http.routers.sauce.rule=Host(`${SAUCE_DOMAIN}`)"
+      - "traefik.http.routers.sauce.entrypoints=${TRAEFIK_ENTRYPOINT}"
+      - "traefik.http.routers.sauce.tls=true"
+      - "traefik.http.routers.sauce.tls.certresolver=${TRAEFIK_CERTRESOLVER}"
+      - "traefik.http.services.sauce.loadbalancer.server.port=3000"
+
+networks:
+  proxy:
+    external: true
+    name: ${TRAEFIK_NETWORK}
